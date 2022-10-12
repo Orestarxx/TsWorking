@@ -36,38 +36,33 @@
 // }
 // }
 
+interface ICore {
+    flight: number,
+    core: {
+        reuse_count: number,
+        status: string
+    }
+}
+interface IPayloads {
+    payload_type:string,
+    payload_mass_kg:number,
+    payload_mass_lbs:number
+}
+
 interface ISpace<N> {
-    mission_name:number|string,
+    mission_name:string,
     launch_date_local:number,
     launch_site: {
-        site_name_long: number|string
+        site_name_long:string
     },
     links: {
         article_link: N,
-        video_link: number|string
+        video_link:string
     },
     rocket: {
-        rocket_name: number|string,
-        first_stage: {
-            cores: [
-                {
-                    flight: number,
-                    core: {
-                        reuse_count: number,
-                        status: boolean|string
-                    }
-                }
-            ]
-        },
-        second_stage: {
-            payloads: [
-                {
-                    payload_type:string,
-                    payload_mass_kg:number,
-                    payload_mass_lbs:number
-                }
-            ]
-        }
+        rocket_name:string,
+        first_stage:ICore[],
+        second_stage: IPayloads[],
     }
 }
 
